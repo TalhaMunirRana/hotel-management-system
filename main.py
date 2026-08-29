@@ -72,12 +72,24 @@ class Room():
 
 class Guest():
     """Handles the guest information"""
-    def __init__(self, name, phone, room, reservation):
+    def __init__(self, name, phone, guest_id):
         """Initialize the parameters"""
         self.name = name
         self.phone = phone
-        self.room = room
-        self.reservation = reservation
+        self.guest_id = guest_id
+        self.reservations = []
+
+    def add_reservation(self):
+        """Adds the reservation in reservations"""
+        ...
+
+    def cancel_reservation(self):
+        """Cancels and removes the reservation from the reservations"""
+        ...
+
+    def show_reservations(self):
+        """Lists all the reservations of the guest"""
+        ...
 
 class Reservation():
     """Handles the reservation details"""
