@@ -93,7 +93,36 @@ class Guest():
 
 class Reservation():
     """Handles the reservation details"""
-    def __init__(self, guest, room):
+    def __init__(self, guest, room, check_in, check_out, number_of_nights, total_price, status):
         """Initialize the parameters"""
         self.guest = guest
         self.room = room
+        self.check_in = check_in
+        self.check_out = check_out
+        self.number_of_nights = number_of_nights
+        self.total_price = total_price
+        self.status = status
+
+    def calculate_nights(self):
+        """Calculates the number of nights"""
+        ...
+
+    def calculate_total_price(self):
+        """Calculates the total price"""
+        ...
+
+    def cancel(self):
+        """Cancels the reservation"""
+        ...
+
+    def check_in_guest(self):
+        """Checks in the guest"""
+        ...
+
+    def check_out_guest(self):
+        """Checks out the guest"""
+        ...
+
+    def change_room(self):
+        """Changes the room of the guest"""
+        ...
