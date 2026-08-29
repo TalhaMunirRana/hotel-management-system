@@ -126,3 +126,27 @@ class Reservation():
     def change_room(self):
         """Changes the room of the guest"""
         ...
+
+class Payment():
+    """Handles the payment"""
+
+    def __init__(self, payment_id, reservation, amount, payment_date, payment_method, status):
+        """Initialize the attributes"""
+        self.payment_id = payment_id
+        self.reservation = reservation
+        self.amount = amount
+        self.payment_date = payment_date
+        self.payment_method = payment_method
+        self.status = status
+
+    def process_payments(self):
+        """Processes the payment"""
+        ...
+
+    def refund(self):
+        """Refunds the payment"""
+        ...
+
+    def check_payment_status(self):
+        """Checks the payment status"""
+        ...
