@@ -48,27 +48,34 @@ class Room():
 
     def check_availability(self):
         """Checks the rooms availability"""
-        ...
+        return self.availability
 
     def updated_status(self):
         """Updates the current status of the room"""
-        ...
+        return {
+            'room_number': self.room_number,
+            'availability': self.availability,
+            'cleanliness': self.cleanliness,
+            'maintenance': self.maintenance_status
+        }
 
     def mark_clean(self):
         """Marks the room as cleaned"""
-        ...
+        self.cleanliness = "clean"
 
     def mark_dirty(self):
         """Marks the room as dirty."""
-        ...
+        self.cleanliness = 'dirty'
 
     def put_under_maintainance(self):
         """Change the maintenance status of the room as under maintenance"""
-        ...
+        self.maintenance_status = True
+        self.availability = False
 
     def remove_from_maintainance(self):
         """Change the maintenance status of the room as maintained"""
-        ...
+        self.maintenance_status = False
+        self.availability = True
 
 class Guest():
     """Handles the guest information"""
