@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Hotel():
     """Handles all the aspects of a Hotel."""
     def __init__(self, name):
@@ -102,39 +104,53 @@ class Guest():
 
 class Reservation():
     """Handles the reservation details"""
-    def __init__(self, guest, room, check_in, check_out, number_of_nights, total_price, status):
+    def __init__(self, guest, room, check_in, check_out):
         """Initialize the parameters"""
         self.guest = guest
         self.room = room
         self.check_in = check_in
         self.check_out = check_out
-        self.number_of_nights = number_of_nights
-        self.total_price = total_price
-        self.status = status
+        self.number_of_nights = self.calculate_nights()
+        self.total_price = self.calculate_total_price()
+        self.status = 'confirmed'
 
     def calculate_nights(self):
         """Calculates the number of nights"""
-        ...
+        check_in = datetime.strptime(self.check_in, "%Y-%m-%d")
+        check_out = datetime.strptime(self.check_out, "%Y-%m-%d")
+
+        return (check_out - check_in).days
 
     def calculate_total_price(self):
         """Calculates the total price"""
-        ...
+        return self.number_of_nights * self.room.price
 
     def cancel(self):
         """Cancels the reservation"""
-        ...
+        self.status = 'cancelled'
+        self.room.availability = True
 
     def check_in_guest(self):
         """Checks in the guest"""
-        ...
+        if self.status == 'confirmed':
+            self.status = 'checked_in'
 
     def check_out_guest(self):
         """Checks out the guest"""
-        ...
+        if self.status == 'checked_in':
+            self.status = 'checked_out'
+            self.room.availability = True
 
-    def change_room(self):
+    def change_room(self, new_room):
         """Changes the room of the guest"""
-        ...
+        if not new_room.check_availability():
+            return False
+
+        self.room.availability = True
+        self.room = new_room
+        new_room.availability = False
+        self.total_price = self.calculate_total_price()
+        return True
 
 class Payment():
     """Handles the payment"""
