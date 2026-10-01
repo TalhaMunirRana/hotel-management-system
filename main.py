@@ -86,17 +86,19 @@ class Guest():
         self.guest_id = guest_id
         self.reservations = []
 
-    def add_reservation(self):
+    def add_reservation(self, reservation):
         """Adds the reservation in reservations"""
-        ...
+        self.reservations.append(reservation)
 
-    def cancel_reservation(self):
+    def cancel_reservation(self, reservation):
         """Cancels and removes the reservation from the reservations"""
-        ...
+        if reservation in self.reservations:
+            self.reservations.remove(reservation)
 
     def show_reservations(self):
         """Lists all the reservations of the guest"""
-        ...
+        for reservation in self.reservations:
+            print(reservation)
 
 class Reservation():
     """Handles the reservation details"""
